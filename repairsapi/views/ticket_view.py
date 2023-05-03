@@ -59,7 +59,7 @@ class TicketView(ViewSet):
     
     def destroy(self, request, pk=None):
         """Handle DELETE requests for service tickets """
-        ticket = ServiceTicket.get(pk=pk)
+        ticket = ServiceTicket.objects.get(pk=pk)
         ticket.delete()
 
         return Response(None, status.HTTP_204_NO_CONTENT)
