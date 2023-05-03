@@ -46,6 +46,17 @@ class TicketView(ViewSet):
         serialized = TicketSerializer(ticket)
         return Response(serialized.data, status=status.HTTP_200_OK)
     
+    def update(self, request, pk=None):
+        """Handle PUT requests for Service Tickets"""
+
+        ticket = ServiceTicket.objects.get(pk=pk)
+
+        assigned_employee = Employee.objects.get(pk=request.data['employee'])
+        ticket.employee = assigned_employee
+
+        ticket.save()
+        return Response(None, status.HTTP_204_NO_CONTENT)
+    
 
 class TicketEmployeeSerializer(serializers.ModelSerializer):
     class Meta: 
