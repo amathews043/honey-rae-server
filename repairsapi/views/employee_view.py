@@ -20,7 +20,7 @@ class EmployeeView(ViewSet):
         employee = Employee.objects.get(pk=pk)
         serialized = EmployeeSerializer(employee)
         return Response(serialized.data, status=status.HTTP_200_OK)
-
+    
 class EmployeeSerializer(serializers.ModelSerializer): 
         """JSON serializer for employees"""
 

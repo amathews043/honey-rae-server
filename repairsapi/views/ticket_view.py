@@ -57,6 +57,14 @@ class TicketView(ViewSet):
         ticket.save()
         return Response(None, status.HTTP_204_NO_CONTENT)
     
+    def destroy(self, request, pk=None):
+        """Handle DELETE requests for service tickets """
+        ticket = ServiceTicket.get(pk=pk)
+        ticket.delete()
+
+        return Response(None, status.HTTP_204_NO_CONTENT)
+
+    
 
 class TicketEmployeeSerializer(serializers.ModelSerializer):
     class Meta: 
