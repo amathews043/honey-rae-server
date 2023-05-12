@@ -54,6 +54,9 @@ class TicketView(ViewSet):
         assigned_employee = Employee.objects.get(pk=request.data['employee'])
         ticket.employee = assigned_employee
 
+        complete = request.data['date_completed']
+        ticket.date_completed = complete
+
         ticket.save()
         return Response(None, status.HTTP_204_NO_CONTENT)
     
