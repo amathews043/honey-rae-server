@@ -37,6 +37,8 @@ class TicketView(ViewSet):
                     service_tickets = service_tickets.filter(employee_id__isnull=True)
                 if request.query_params['status'] == 'inprogress':
                     service_tickets = service_tickets.filter(employee_id__isnull=False, date_completed__isnull=True)
+            if "description" in request.query_params:
+                service_tickets = service_tickets.filter(description__icontains=request.query_params['description'])
         else:
             service_tickets = ServiceTicket.objects.filter(customer__user=request.auth.user)
 
